@@ -1,0 +1,71 @@
+services:
+    nulldev_skeleton.paths:
+        class: NullDev\SkeletonBundle\Paths
+        arguments: ["%nulldev_skeleton.config%"]
+
+
+
+    null_dev.skeleton.source_factory.broadway.read.entity:
+        class: NullDev\Skeleton\SourceFactory\Broadway\ReadEntitySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+
+    null_dev.skeleton.source_factory.broadway.read.projector:
+        class: NullDev\Skeleton\SourceFactory\Broadway\ReadProjectorSourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+
+    null_dev.skeleton.source_factory.broadway.read.repository:
+        class: NullDev\Skeleton\SourceFactory\Broadway\ReadRepositorySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+
+
+    null_dev.skeleton.source_factory.broadway.command:
+        class: NullDev\Skeleton\SourceFactory\Broadway\CommandSourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+    null_dev.skeleton.source_factory.broadway.event:
+        class: NullDev\Skeleton\SourceFactory\Broadway\EventSourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+
+    null_dev.skeleton.source_factory.broadway.event_sourced_aggregate_root:
+        class: NullDev\Skeleton\SourceFactory\Broadway\EventSourcedAggregateRootSourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+    null_dev.skeleton.source_factory.broadway.event_sourcing_repository:
+        class: NullDev\Skeleton\SourceFactory\Broadway\EventSourcingRepositorySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+    null_dev.skeleton.source_factory.uuid_identity:
+        class: NullDev\Skeleton\SourceFactory\UuidIdentitySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+
+    null_dev.skeleton.source.class_source_factory:
+        class: NullDev\Skeleton\Source\ClassSourceFactory
+
+    null_dev.skeleton.definition.php.definition_factory:
+        class: NullDev\Skeleton\Definition\PHP\DefinitionFactory
+
+    null_dev.skeleton.path.reader.source_code:
+        class: NullDev\Skeleton\Path\Readers\SourceCodePathReader
+
+
