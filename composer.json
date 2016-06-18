@@ -1,0 +1,43 @@
+{
+    "name": "nulldevelopmenthr/skeleton-bundle",
+    "license": "proprietary",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "NullDev\\SkeletonBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\NullDev\\SkeletonBundle\\": "spec/",
+            "tests\\NullDev\\SkeletonBundle\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit":                          "~5",
+        "mockery/mockery":                          "~0.9",
+        "phpspec/phpspec":                          "~2.0",
+        "henrikbjorn/phpspec-code-coverage":        "~2.0",
+        "coduo/phpspec-data-provider-extension":    "^1.0",
+        "ciaranmcnulty/phpspec-typehintedmethods":  "~1.1",
+        "rmiller/exemplify-extension":              "~0.2",
+        "phpmd/phpmd":                              "~2.1",
+        "squizlabs/php_codesniffer":                "2.*",
+        "friendsofphp/php-cs-fixer":                "~1.5",
+        "satooshi/php-coveralls":                   "^1",
+        "codeclimate/php-test-reporter":            "^0.3",
+        "broadway/broadway":                        "dev-master",
+        "ramsey/uuid":                              "^3.1",
+        "mattketmo/uuid-2x-bridge":                 "*@dev"
+    },
+    "scripts": {
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+    }
+}
