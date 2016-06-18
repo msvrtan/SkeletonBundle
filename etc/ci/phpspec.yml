@@ -1,0 +1,19 @@
+formatter.name: progress
+extensions:
+  - Coduo\PhpSpec\DataProvider\DataProviderExtension
+  - Cjm\PhpSpec\Extension\TypeHintedMethodsExtension
+  - RMiller\ExemplifyExtension\ExemplifyExtension
+  - PhpSpec\Extension\CodeCoverageExtension
+suites:
+  default:
+    namespace: NullDev\SkeletonBundle
+    psr4_prefix: NullDev\SkeletonBundle
+code_coverage:
+  format:
+    - html
+    - clover
+    - php
+  output:
+    html: build/phpspec/coverage
+    clover: build/logs/clover.xml
+    php: build/cov/coverage.cov

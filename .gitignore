@@ -1,0 +1,16 @@
+/bin/
+/composer.phar
+/tmp
+/vendor/
+#PHPStorm folder
+/.idea
+#backup files from unix editors
+*~
+#merge files
+*.orig
+#Ignoring MacDS_Store files
+.DS_Store
+/.php_cs.cache
+
+/*.sh
+/.ant-targets-build.xml
