@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="generator" default="build">
+<property
+    name="my.project.tmp.exec.output"
+    value="${tmp.dir}/exec-output.txt"/>
+
+    <target name="test"
+            depends="phpspec,phpunit">
+    </target>
+
+    <target name="fix-codestandards"
+            depends="php-cs-fixer-fix,check-codestandards">
+    </target>
+    <target name="check-codestandards"
+            depends="php-cs-fixer-check,phpmd-task,phpcs-task">
+    </target>
+
+    <target name="phpspec" description="">
+        <exec executable="bin/phpspec" failonerror="false" resultproperty="phpspecresult"
+              outputproperty="phpspecout">
+            <arg value="run"/>
+            <arg value="-v"/>
+        </exec>
+        <fail message="${phpspecout}">
+            <condition>
+                <isfailure code="${phpspecresult}"/>
+            </condition>
+        </fail>
+    </target>
+
+    <target name="phpspec-code-coverage" description="">
+        <exec executable="bin/phpspec" failonerror="false" resultproperty="phpspecresult" outputproperty="phpspecout">
+            <arg value="run"/>
+            <arg value="-v"/>
+            <arg value="-c"/>
+            <arg value="etc/ci/phpspec.yml"/>
+        </exec>
+        <fail message="${phpspecout}">
+            <condition>
+                <isfailure code="${phpspecresult}"/>
+            </condition>
+        </fail>
+    </target>
+
+    <target name="phpunit" description="">
+        <exec executable="bin/phpunit" failonerror="false" resultproperty="phpunitresult" outputproperty="phpunitout">
+            <arg value="--fail-on-warning"/>
+        </exec>
+        <fail message="${phpunitout}">
+            <condition>
+                <isfailure code="${phpunitresult}"/>
+            </condition>
+        </fail>
+    </target>
+    <target name="phpmd-task" description="Run phpmd in parallel">
+        <parallel failonany="true" threadCount="4">
+            <antcall target="phpmd">
+            	<param name="path" value="src"/>
+            </antcall>
+            <antcall target="phpmd">
+                <param name="path" value="tests"/>
+            </antcall>
+        </parallel>
+    </target>
+    <target name="phpcs-task" description="Run phpcs in parallel">
+        <parallel failonany="true" threadCount="4">
+            <antcall target="phpcs">
+            	<param name="path" value="src"/>
+            </antcall>
+            <antcall target="phpcs">
+                <param name="path" value="tests"/>
+            </antcall>
+        </parallel>
+    </target>
+
+    <target name="php-cs-fixer-fix" description="">
+        <retry retrycount="3">
+            <exec executable="bin/php-cs-fixer" failOnError="true">
+                <arg value="fix"/>
+            </exec>
+        </retry>
+    </target>
+    <target name="php-cs-fixer-check" description="">
+        <exec executable="bin/php-cs-fixer" failOnError="true">
+            <arg value="fix"/>
+            <arg value="--dry-run"/>
+            <arg value="--diff"/>
+        </exec>
+    </target>
+    <target name="phpmd" description="">
+        <exec executable="bin/phpmd" failOnError="true">
+            <arg path="${basedir}/${path}"/>
+            <arg value="text"/>
+            <arg value="phpmd.xml"/>
+        </exec>
+    </target>
+    <target name="phpcs" description="">
+        <exec executable="bin/phpcs" failonerror="true">
+            <arg value="--standard=phpcs.xml" />
+            <arg path="${basedir}/${path}" />
+            <arg value="-n" />
+        </exec>
+    </target>
+</project>

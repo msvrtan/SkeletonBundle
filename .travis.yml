@@ -1,0 +1,44 @@
+language: php
+sudo: false
+env:
+  global:
+    - COMPOSER_DISCARD_CHANGES=true
+matrix:
+    include:
+        - php: 7.0
+          env: coverage=phpunit
+        - php: 7.0
+          env: coverage=phpspec
+        - php: 7.0
+    fast_finish: true
+
+cache:
+  directories:
+    - vendor
+    - bin
+
+notifications:
+  email: false
+
+before_script:
+  - if [[ $coverage == 'phpspec' ]]; then cp etc/ci/phpspec.yml phpspec.yml; fi;
+  - sed -i 's/^/;/' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
+  - composer install --prefer-source
+  - mkdir build/cov -p
+  - mkdir build/logs -p
+script:
+  - if [[ $coverage == 'phpunit' ]]; then sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini; fi;
+  - php -d 'xdebug.max_nesting_level=500' bin/phpunit --fail-on-warning
+  - if [[ $coverage == 'phpunit' ]]; then sed -i 's/^/;/' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini; fi;
+  - if [[ $coverage == 'phpspec' ]]; then sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini; fi;
+  - ./bin/phpspec run --no-interaction
+  - if [[ $coverage == 'phpspec' ]]; then sed -i 's/^/;/' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini; fi;
+  - ant php-cs-fixer-check
+  - ant phpcs-task
+  - ant phpmd-task
+
+after_script:
+  - if [[ $coverage == 'phpunit' ]]; then export CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER && php bin/coveralls -v; fi;
+  - if [[ $coverage == 'phpunit' ]]; then php bin/test-reporter -v; fi;
+  - if [[ $coverage == 'phpspec' ]]; then export CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER && php bin/coveralls -v; fi;
+  - if [[ $coverage == 'phpspec' ]]; then php bin/test-reporter -v; fi;
