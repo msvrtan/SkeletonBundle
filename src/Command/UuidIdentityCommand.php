@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -43,6 +44,14 @@ class UuidIdentityCommand extends BaseSkeletonGeneratorCommand
         $fileResource = $this->getFileResource($classSource);
 
         $this->handleGeneratingFile($fileResource);
+
+        //Generating PHPSpec.
+        $createSpecQuestion = new ConfirmationQuestion('Create PHPSpec file? (default=y)', true);
+        if ($this->askQuestion($createSpecQuestion)) {
+            $specSource   = $this->createSpecSource($classSource);
+            $specResource = $this->getFileResource($specSource);
+            $this->handleGeneratingFile($specResource);
+        }
     }
 
     protected function getSource(ClassType $classType) : ImprovedClassSource
