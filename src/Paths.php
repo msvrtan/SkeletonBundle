@@ -15,8 +15,6 @@ class Paths
 
     public function __construct(array $data)
     {
-        $this->processCode($data['code']);
-
         if ($data['phpspec']['enabled'] === true) {
             $this->processPhpSpec($data['phpspec']);
         }
@@ -24,6 +22,7 @@ class Paths
         if ($data['phpunit']['enabled'] === true) {
             $this->processPhpUnit($data['phpspec']);
         }
+        $this->processCode($data['code']);
     }
 
     private function processCode(array $data)

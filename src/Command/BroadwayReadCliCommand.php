@@ -10,6 +10,7 @@ use PhpSpec\Exception\Example\PendingException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -52,6 +53,14 @@ class BroadwayReadCliCommand extends BaseSkeletonGeneratorCommand
 
         $this->handleGeneratingFile($readEntityFileResource);
 
+        //Generating PHPSpec for Entity.
+        $createSpecQuestion = new ConfirmationQuestion('Create PHPSpec file for entity? (default=y)', true);
+        if ($this->askQuestion($createSpecQuestion)) {
+            $readEntitySpecSource   = $this->createSpecSource($readEntityClassSource);
+            $readEntitySpecResource = $this->getFileResource($readEntitySpecSource);
+            $this->handleGeneratingFile($readEntitySpecResource);
+        }
+
         //Repository
         $repositoryClassType    = ClassType::create($className.'Repository');
         $repositoryClassSource  = $this->getReadRepositorySource($repositoryClassType);
@@ -59,12 +68,28 @@ class BroadwayReadCliCommand extends BaseSkeletonGeneratorCommand
 
         $this->handleGeneratingFile($repositoryFileResource);
 
+        //Generating PHPSpec for Repository.
+        $createSpecQuestion = new ConfirmationQuestion('Create PHPSpec file for repository? (default=y)', true);
+        if ($this->askQuestion($createSpecQuestion)) {
+            $readRepositorySpecSource   = $this->createSpecSource($repositoryClassSource);
+            $readRepositorySpecResource = $this->getFileResource($readRepositorySpecSource);
+            $this->handleGeneratingFile($readRepositorySpecResource);
+        }
+
         //Projector
         $readProjectorClassType    = ClassType::create($className.'Projector');
         $readProjectorClassSource  = $this->getReadProjectorSource($readProjectorClassType, $repositoryClassType);
         $readProjectorFileResource = $this->getFileResource($readProjectorClassSource);
 
         $this->handleGeneratingFile($readProjectorFileResource);
+
+        //Generating PHPSpec for Projector.
+        $createSpecQuestion = new ConfirmationQuestion('Create PHPSpec file for projector? (default=y)', true);
+        if ($this->askQuestion($createSpecQuestion)) {
+            $readProjectorSpecSource   = $this->createSpecSource($readProjectorClassSource);
+            $readProjectorSpecResource = $this->getFileResource($readProjectorSpecSource);
+            $this->handleGeneratingFile($readProjectorSpecResource);
+        }
     }
 
     private function getReadEntitySource(ClassType $readEntityClassType, array $parameters) : ImprovedClassSource

@@ -10,7 +10,9 @@ use NullDev\Skeleton\Definition\PHP\Types\TypeFactory;
 use NullDev\Skeleton\File\FileFactory;
 use NullDev\Skeleton\File\FileGenerator;
 use NullDev\Skeleton\File\FileResource;
+use NullDev\Skeleton\Source\ClassSourceFactory;
 use NullDev\Skeleton\Source\ImprovedClassSource;
+use NullDev\Skeleton\SpecGenerator\SpecGenerator;
 use PhpSpec\Exception\Example\PendingException;
 use Sensio\Bundle\GeneratorBundle\Command\GeneratorCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -129,6 +131,13 @@ abstract class BaseSkeletonGeneratorCommand extends GeneratorCommand
     protected function askQuestion(Question $question)
     {
         return $this->getQuestionHelper()->ask($this->input, $this->output, $question);
+    }
+
+    protected function createSpecSource(ImprovedClassSource $classSource) : ImprovedClassSource
+    {
+        $generator = new SpecGenerator(new ClassSourceFactory());
+
+        return $generator->generate($classSource);
     }
 
     protected function getFileResource(ImprovedClassSource $classSource) : FileResource

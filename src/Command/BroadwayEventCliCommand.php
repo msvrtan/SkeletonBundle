@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -36,12 +37,19 @@ class BroadwayEventCliCommand extends BaseSkeletonGeneratorCommand
         $className = $this->handleClassNameInput();
         $fields    = $this->getConstuctorParameters();
 
-        $classType = ClassType::create($className);
-
+        $classType    = ClassType::create($className);
         $classSource  = $this->getSource($classType, $fields);
         $fileResource = $this->getFileResource($classSource);
 
         $this->handleGeneratingFile($fileResource);
+
+        //Generating PHPSpec.
+        $createSpecQuestion = new ConfirmationQuestion('Create PHPSpec file? (default=y)', true);
+        if ($this->askQuestion($createSpecQuestion)) {
+            $specSource   = $this->createSpecSource($classSource);
+            $specResource = $this->getFileResource($specSource);
+            $this->handleGeneratingFile($specResource);
+        }
     }
 
     private function getSource(ClassType $classType, array $fields) : ImprovedClassSource
