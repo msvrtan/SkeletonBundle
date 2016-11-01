@@ -304,12 +304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nulldevelopmenthr/generator.git",
-                "reference": "75ee1be6c5a21b8173a756ef3839a5ccb58a34e2"
+                "reference": "39dec76457e066fdd029cbdc5c9da320a88865dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nulldevelopmenthr/generator/zipball/75ee1be6c5a21b8173a756ef3839a5ccb58a34e2",
-                "reference": "75ee1be6c5a21b8173a756ef3839a5ccb58a34e2",
+                "url": "https://api.github.com/repos/nulldevelopmenthr/generator/zipball/39dec76457e066fdd029cbdc5c9da320a88865dc",
+                "reference": "39dec76457e066fdd029cbdc5c9da320a88865dc",
                 "shasum": ""
             },
             "require": {
@@ -350,7 +350,7 @@
                 "proprietary"
             ],
             "description": "generator",
-            "time": "2016-11-01 21:32:13"
+            "time": "2016-11-01 21:43:54"
         },
         {
             "name": "paragonie/random_compat",
