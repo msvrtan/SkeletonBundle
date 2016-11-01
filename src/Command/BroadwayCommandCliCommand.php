@@ -1,6 +1,7 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
+
 namespace NullDev\SkeletonBundle\Command;
 
 use NullDev\Skeleton\Definition\PHP\Types\ClassType;
