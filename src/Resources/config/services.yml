@@ -5,22 +5,20 @@ services:
 
 
 
-    null_dev.skeleton.source_factory.broadway.read.entity:
-        class: NullDev\Skeleton\SourceFactory\Broadway\ReadEntitySourceFactory
+    null_dev.skeleton.source_factory.broadway.elastic_search.read.entity:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\ElasticSearch\ReadEntitySourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
 
-
-    null_dev.skeleton.source_factory.broadway.read.projector:
-        class: NullDev\Skeleton\SourceFactory\Broadway\ReadProjectorSourceFactory
+    null_dev.skeleton.source_factory.broadway.elastic_search.read.projector:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\ElasticSearch\ReadProjectorSourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
 
-
-    null_dev.skeleton.source_factory.broadway.read.repository:
-        class: NullDev\Skeleton\SourceFactory\Broadway\ReadRepositorySourceFactory
+    null_dev.skeleton.source_factory.broadway.elastic_search.read.repository:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\ElasticSearch\ReadRepositorySourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
@@ -28,26 +26,26 @@ services:
 
 
     null_dev.skeleton.source_factory.broadway.command:
-        class: NullDev\Skeleton\SourceFactory\Broadway\CommandSourceFactory
+        class: NullDev\Skeleton\Broadway\SourceFactory\CommandSourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
 
     null_dev.skeleton.source_factory.broadway.event:
-        class: NullDev\Skeleton\SourceFactory\Broadway\EventSourceFactory
+        class: NullDev\Skeleton\Broadway\SourceFactory\EventSourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
 
 
     null_dev.skeleton.source_factory.broadway.event_sourced_aggregate_root:
-        class: NullDev\Skeleton\SourceFactory\Broadway\EventSourcedAggregateRootSourceFactory
+        class: NullDev\Skeleton\Broadway\SourceFactory\EventSourcedAggregateRootSourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
 
     null_dev.skeleton.source_factory.broadway.event_sourcing_repository:
-        class: NullDev\Skeleton\SourceFactory\Broadway\EventSourcingRepositorySourceFactory
+        class: NullDev\Skeleton\Broadway\SourceFactory\EventSourcingRepositorySourceFactory
         arguments:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"

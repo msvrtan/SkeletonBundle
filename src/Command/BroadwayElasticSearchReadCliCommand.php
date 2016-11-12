@@ -19,12 +19,12 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  * @SuppressWarnings(PHPMD.NPathComplexity)
  * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
-class BroadwayReadCliCommand extends BaseSkeletonGeneratorCommand
+class BroadwayElasticSearchReadCliCommand extends BaseSkeletonGeneratorCommand
 {
     protected function configure()
     {
-        $this->setName('skeleton:broadway:read')
-            ->setDescription('Generates Broadway read')
+        $this->setName('skeleton:broadway:read:elastic-search')
+            ->setDescription('Generates Broadway read using ElasticSearch engine')
             ->addOption('className', null, InputOption::VALUE_REQUIRED, 'Class name');
     }
 
@@ -95,14 +95,14 @@ class BroadwayReadCliCommand extends BaseSkeletonGeneratorCommand
 
     private function getReadEntitySource(ClassType $readEntityClassType, array $parameters) : ImprovedClassSource
     {
-        $factory = $this->getService('null_dev.skeleton.source_factory.broadway.read.entity');
+        $factory = $this->getService('null_dev.skeleton.source_factory.broadway.elastic_search.read.entity');
 
         return $factory->create($readEntityClassType, $parameters);
     }
 
     private function getReadRepositorySource(ClassType $repositoryClassType) : ImprovedClassSource
     {
-        $factory = $this->getService('null_dev.skeleton.source_factory.broadway.read.repository');
+        $factory = $this->getService('null_dev.skeleton.source_factory.broadway.elastic_search.read.repository');
 
         return $factory->create($repositoryClassType);
     }
@@ -111,7 +111,7 @@ class BroadwayReadCliCommand extends BaseSkeletonGeneratorCommand
         ClassType $projectorClassType,
         ClassType $repositoryClassType
     ) : ImprovedClassSource {
-        $factory = $this->getService('null_dev.skeleton.source_factory.broadway.read.projector');
+        $factory = $this->getService('null_dev.skeleton.source_factory.broadway.elastic_search.read.projector');
 
         $parameter = new Parameter('repository', $repositoryClassType);
 
