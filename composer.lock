@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bf6ae726f35ca1c32f99e308ca3b0788",
-    "content-hash": "0b557318df54bc8ae9149a435e68a3b4",
+    "hash": "13794bef2519e9fcc5d720026002d9e6",
+    "content-hash": "f49619f7ce03f7aee5bfa88b579274f4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -300,16 +300,16 @@
         },
         {
             "name": "nulldevelopmenthr/generator",
-            "version": "0.3.x-dev",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nulldevelopmenthr/generator.git",
-                "reference": "39dec76457e066fdd029cbdc5c9da320a88865dc"
+                "reference": "bf8bb843d125b28d0eaaf1974fac914e1042fc41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nulldevelopmenthr/generator/zipball/39dec76457e066fdd029cbdc5c9da320a88865dc",
-                "reference": "39dec76457e066fdd029cbdc5c9da320a88865dc",
+                "url": "https://api.github.com/repos/nulldevelopmenthr/generator/zipball/bf8bb843d125b28d0eaaf1974fac914e1042fc41",
+                "reference": "bf8bb843d125b28d0eaaf1974fac914e1042fc41",
                 "shasum": ""
             },
             "require": {
@@ -350,7 +350,7 @@
                 "proprietary"
             ],
             "description": "generator",
-            "time": "2016-11-01 21:43:54"
+            "time": "2016-11-12 18:20:48"
         },
         {
             "name": "paragonie/random_compat",
@@ -4494,7 +4494,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "nulldevelopmenthr/generator": 20,
         "broadway/broadway": 20,
         "mattketmo/uuid-2x-bridge": 20
     },
