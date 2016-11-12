@@ -23,6 +23,31 @@ services:
           - "@null_dev.skeleton.source.class_source_factory"
           - "@null_dev.skeleton.definition.php.definition_factory"
 
+    null_dev.skeleton.source_factory.broadway.doctrine_orm.read.entity:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\DoctrineOrm\ReadEntitySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+    null_dev.skeleton.source_factory.broadway.doctrine_orm.read.factory:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\DoctrineOrm\ReadFactorySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+
+    null_dev.skeleton.source_factory.broadway.doctrine_orm.read.projector:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\DoctrineOrm\ReadProjectorSourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
+    null_dev.skeleton.source_factory.broadway.doctrine_orm.read.repository:
+        class: NullDev\Skeleton\Broadway\SourceFactory\Read\DoctrineOrm\ReadRepositorySourceFactory
+        arguments:
+          - "@null_dev.skeleton.source.class_source_factory"
+          - "@null_dev.skeleton.definition.php.definition_factory"
+
 
 
     null_dev.skeleton.source_factory.broadway.command:
