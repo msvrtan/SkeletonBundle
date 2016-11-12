@@ -122,7 +122,7 @@ abstract class BaseSkeletonGeneratorCommand extends GeneratorCommand
         return $this->askQuestion($questionName);
     }
 
-    protected function askOverwriteConfirmationQuestion() : bool
+    protected function askOverwriteConfirmationQuestion()
     {
         $question = new ConfirmationQuestion('File exists, overwrite?', false);
 
